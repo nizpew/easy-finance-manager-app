@@ -26,9 +26,16 @@ This project is a **custom financial control application** designed for both **i
 
 <img width="1900" height="925" alt="image" src="https://github.com/user-attachments/assets/65c65b36-de63-433e-975d-74c5440853fb" />
 
-<img width="1920" height="1035" alt="image" src="https://github.com/user-attachments/assets/114f3e57-2d3a-4940-88c9-d56a86f43f85" />
+<img width="1905" height="918" alt="image" src="https://github.com/user-attachments/assets/f3aee1b8-048a-4faa-a83d-0ddbab400747" />
 
 <img width="1920" height="1035" alt="image" src="https://github.com/user-attachments/assets/2fcaa80c-be09-45cb-bc37-dae505990f92" />
+
+<img width="1895" height="912" alt="image" src="https://github.com/user-attachments/assets/acab4465-052a-4417-94c0-8ddad6be2d8d" />
+
+<img width="1902" height="922" alt="image" src="https://github.com/user-attachments/assets/95241e86-bd44-4da9-b18a-8c13128df488" />
+
+<img width="1902" height="915" alt="image" src="https://github.com/user-attachments/assets/adfc5fe1-bd8b-47f5-9fd9-30d4a1bef4ce" />
+
 
 <img width="287.34" height="570" alt="image" src="https://github.com/user-attachments/assets/97584b8c-129e-4ff0-9ef8-d170eb2d8e04" />
 
