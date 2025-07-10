@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
 import { TransactionForm } from './TransactionForm';
 import { TransactionList } from './TransactionList';
+import { TransactionFilter } from './TransactionFilter';
+import { BudgetForm } from './BudgetForm';
+import { BudgetList } from './BudgetList';
+import { Reports } from './Reports';
+import { InvoiceForm } from './InvoiceForm';
+import { InvoiceList } from './InvoiceList';
+import { GoalForm } from './GoalForm';
+import { GoalList } from './GoalList';
 import { 
   DollarSign, 
   TrendingUp, 
@@ -12,12 +21,20 @@ import {
   LogOut,
   Building2,
   User,
-  Plus
+  Plus,
+  BarChart3,
+  Target,
+  FileText,
+  Filter
 } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
-  const { user, logout, getTotalIncome, getTotalExpenses, getBalance } = useAuth();
+  const { user, logout, getTotalIncome, getTotalExpenses, getBalance, getFilteredTransactions } = useAuth();
   const [showTransactionForm, setShowTransactionForm] = useState(false);
+  const [showBudgetForm, setShowBudgetForm] = useState(false);
+  const [showInvoiceForm, setShowInvoiceForm] = useState(false);
+  const [showGoalForm, setShowGoalForm] = useState(false);
+  const [transactionFilters, setTransactionFilters] = useState({});
 
   if (!user) return null;
 
@@ -136,8 +153,71 @@ export const Dashboard: React.FC = () => {
           </div>
         )}
 
-        {/* Transaction List */}
-        <TransactionList />
+        {/* Main Content Tabs */}
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5">
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="reports">Reports</TabsTrigger>
+            {user.type === 'business' && <TabsTrigger value="invoices">Invoices</TabsTrigger>}
+            {user.type === 'individual' && <TabsTrigger value="goals">Goals</TabsTrigger>}
+            <TabsTrigger value="budget">Budget</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview" className="space-y-6">
+            <TransactionFilter 
+              onFiltersChange={setTransactionFilters}
+              onClearFilters={() => setTransactionFilters({})}
+            />
+            <TransactionList />
+          </TabsContent>
+
+          <TabsContent value="reports">
+            <Reports />
+          </TabsContent>
+
+          {user.type === 'business' && (
+            <TabsContent value="invoices" className="space-y-6">
+              {showInvoiceForm && (
+                <InvoiceForm onClose={() => setShowInvoiceForm(false)} />
+              )}
+              <div className="flex justify-end">
+                <Button onClick={() => setShowInvoiceForm(true)}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Invoice
+                </Button>
+              </div>
+              <InvoiceList />
+            </TabsContent>
+          )}
+
+          {user.type === 'individual' && (
+            <TabsContent value="goals" className="space-y-6">
+              {showGoalForm && (
+                <GoalForm onClose={() => setShowGoalForm(false)} />
+              )}
+              <div className="flex justify-end">
+                <Button onClick={() => setShowGoalForm(true)}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Goal
+                </Button>
+              </div>
+              <GoalList />
+            </TabsContent>
+          )}
+
+          <TabsContent value="budget" className="space-y-6">
+            {showBudgetForm && (
+              <BudgetForm onClose={() => setShowBudgetForm(false)} />
+            )}
+            <div className="flex justify-end">
+              <Button onClick={() => setShowBudgetForm(true)}>
+                <Plus className="h-4 w-4 mr-2" />
+                Set Budget
+              </Button>
+            </div>
+            <BudgetList />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
