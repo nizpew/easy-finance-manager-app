@@ -111,8 +111,7 @@ The project includes building a **responsive web application** that works on des
 
 ## Contact
 
-For more information or to request customization, please contact:  
-[Your Name] – [Your Email] – [Your Website/GitHub]
+For more information or to request customization, please contact me
 
 ---
 
